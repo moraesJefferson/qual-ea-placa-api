@@ -15,22 +15,25 @@ public class QualEaPlacaService {
 
 	public Foto buscarPlaca(FotoDto fotoDto) {
 		String s = null;
+		int i = 0;
+		String [] t = new String[4];
 		try {
 			Process p = Runtime.getRuntime().exec("python C:\\Users\\jeffe\\Documents\\python.py");
 			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			while((s = in.readLine()) != null) {
-				System.out.println(s+"10");
+				t[i] = s;
+				i++;
 			}
 		} catch (IOException e) {
 			
 			e.printStackTrace();
 		}
 		 Foto foto = new Foto();
-		 foto.setFoto("xcxcxcxcxcxc");
-		 foto.setSucess(true);
-		 foto.setPlaca("teste");
-		 foto.setProbability("23%");
-		 foto.setCode("AAA-1234");
+		 foto.setFoto(fotoDto.getFoto());
+		 foto.setSucess(Boolean.valueOf(t[0]));
+		 foto.setPlaca(t[1]);
+		 foto.setProbability(t[2]);
+		 foto.setCode(t[3]);
 		 return foto;	
 	}
 }

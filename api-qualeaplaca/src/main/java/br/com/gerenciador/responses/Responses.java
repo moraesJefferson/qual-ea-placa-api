@@ -3,7 +3,7 @@ package br.com.gerenciador.responses;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Response<T> {
+public class Responses<T> {
 
 	private T data;
 	private List<String> errors;
@@ -27,6 +27,6 @@ public class Response<T> {
 		this.errors = errors;
 	}
 
-	public Response() {
+	public Responses() {
 	}
 }
