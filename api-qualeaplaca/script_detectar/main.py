@@ -13,9 +13,9 @@ from classification import training, getLabel
 
 SIGNS = ["ERROR",
         "PARE",
-        "TURN LEFT",
-        "TURN RIGHT",
-        "DO NOT TURN LEFT",
+        "KM40",
+        "PROIBIDOESQUERDA",
+        "PROIBIDOESTACIONAR",
         "DO NOT TURN RIGHT",
         "ONE WAY",
         "SPEED LIMIT",
