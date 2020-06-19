@@ -179,8 +179,11 @@ def localization(image, min_size_components, similitary_contour_with_circle, mod
         sign_type = getLabel(model, sign)
         sign_type = sign_type if sign_type <= 8 else 8
         text = SIGNS[sign_type]
-        if os.path.exists('./outputs/images/' + text + '.png') == False and text != "ERROR":
-            cv2.imwrite('./outputs/images/' + text + '.png', sign)
+        # if os.path.exists('./outputs/images/' + text + '.png') == False and text != "ERROR":
+        #cv2.imwrite('./outputs/images/' + text + '.png', sign)
+        if text != "ERROR":
+        #cv2.imwrite('./outputs/images/' + text + '.png', sign)
+            cv2.imwrite('./outputs/images/' + str(count)+'_'+text+'.png', sign)
 
     if sign_type > 0 and sign_type != current_sign_type:        
         cv2.rectangle(original_image, coordinate[0],coordinate[1], (0, 255, 0), 1)
