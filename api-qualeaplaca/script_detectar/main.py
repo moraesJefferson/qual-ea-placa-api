@@ -8,6 +8,7 @@ import argparse
 import os
 import math
 from ffmpy import FFmpeg
+import traceback
 
 from classification import training, getLabel
 
@@ -279,10 +280,14 @@ def main(args):
             if sign_type > 0 and (not current_sign or sign_type != current_sign):
                 current_sign = sign_type
                 current_text = text
-                top = int(coordinate[0][1]*1.05)
-                left = int(coordinate[0][0]*1.05)
-                bottom = int(coordinate[1][1]*0.95)
-                right = int(coordinate[1][0]*0.95)
+                # top = int(coordinate[0][1]*1.05)
+                # left = int(coordinate[0][0]*1.05)
+                # bottom = int(coordinate[1][1]*0.95)
+                # right = int(coordinate[1][0]*0.95)
+                top = int(coordinate[0][1])
+                left = int(coordinate[0][0])
+                bottom = int(coordinate[1][1])
+                right = int(coordinate[1][0])
 
                 position = [count, sign_type if sign_type <= 8 else 8, coordinate[0][0], coordinate[0][1], coordinate[1][0], coordinate[1][1]]
                 cv2.rectangle(image, coordinate[0],coordinate[1], (0, 255, 0), 1)
@@ -296,6 +301,7 @@ def main(args):
                 # grab the ROI for the bounding box and convert it
                 # to the HSV color space
                 roi = frame[tl[1]:br[1], tl[0]:br[0]]
+                print(roi)
                 roi = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
                 #roi = cv2.cvtColor(roi, cv2.COLOR_BGR2LAB)
 
@@ -352,6 +358,7 @@ def main(args):
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
     except Exception as e:
+        traceback.print_exc()
         print(e)
     file.write("{}".format(sign_count))
     for pos in coordinates:
